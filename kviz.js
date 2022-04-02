@@ -2,8 +2,13 @@ function priNacteni() {
     vytvorStrukturuOtazky(poleVotazek[0]);
 }
 
+
+
 function vytvorStrukturuOtazky(otazecka) {
   let kviz = document.querySelector(".kviz");
+
+  //zbavime se deti pokud existujou
+  kviz.innerHTML = '';
 
   let otazka = document.createElement("div");
   otazka.setAttribute("id", "otazka");
