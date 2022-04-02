@@ -21,6 +21,19 @@ function priNacteni () {
     obrazek.setAttribute('id', 'obrazek');
     obrazek.src = 'obrazky/pivo.jpg';
 
+    let odpovedi = document.createElement('ul');
+    odpovedi.setAttribute('id', 'odpovedi');
+    moznosti.appendChild(odpovedi);
+
+    let odpoved = document.createElement('li');
+    odpoved.setAttribute('data-odpoved', '0');
+    odpoved.innerText = 'odpoved';
+
+
+    odpovedi.appendChild(odpoved);
+    //<li data-odpoved="0">Jedličku</li>
+
+
     
 
 
@@ -30,3 +43,4 @@ function priNacteni () {
     foto.appendChild(obrazek);
 }
 
+const odpovedi = ['od1', 'od2'];
