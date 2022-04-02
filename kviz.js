@@ -1,15 +1,15 @@
 function priNacteni() {
-    indexOtazky = 0;
-    vytvorStrukturuOtazky(poleVotazek[indexOtazky]);
+  indexOtazky = 0;
+  vytvorStrukturuOtazky(poleVotazek[indexOtazky]);
 }
 
 function vytvorStrukturuOtazky(otazecka) {
   let kviz = document.querySelector(".kviz");
 
   //zbavime se deti pokud existujou
-  kviz.innerHTML = '';
+  kviz.innerHTML = "";
 
-  let otazka = document.createElement("div");
+  let otazka = document.createElement("h3");
   otazka.setAttribute("id", "otazka");
   otazka.innerText = otazecka.text;
 
@@ -32,18 +32,17 @@ function vytvorStrukturuOtazky(otazecka) {
   odpovedi.setAttribute("id", "odpovedi");
   moznosti.appendChild(odpovedi);
 
-  otazecka.odpovedi.forEach(function necoOdpoved(odp, index)
-  {
+  otazecka.odpovedi.forEach(function necoOdpoved(odp, index) {
     let odpoved = document.createElement("li");
     odpoved.setAttribute("data-odpoved", index);
     odpoved.innerText = odp;
     odpoved.onclick = function click() {
-        if (poleVotazek.length > indexOtazky + 1) {
+      otazecka.odpoved = index;
+      if (poleVotazek.length > indexOtazky + 1) {
         vytvorStrukturuOtazky(poleVotazek[++indexOtazky]);
-    }
-        else vyhodnot() ;
+      } else vyhodnot();
     };
-    
+
     odpovedi.appendChild(odpoved);
   });
 
@@ -53,33 +52,67 @@ function vytvorStrukturuOtazky(otazecka) {
 }
 
 function vyhodnot() {
-    let kviz = document.querySelector(".kviz");
-    kviz.innerHTML = '';
-    kviz.style.display = 'none';
-    let vysledek = document.querySelector(".vysledek");
-    vysledek.style.display = 'flex';
+  let kviz = document.querySelector(".kviz");
+  kviz.innerHTML = "";
+  kviz.style.display = "none";
+  let vysledek = document.querySelector(".vysledek");
+  vysledek.style.display = "block";
 
-    let nadpis = document.createElement("h2");
-    vysledek.appendChild(nadpis);
-    nadpis.innerHTML = "PRDEL";
+  let x = 0;
 
+  poleVotazek.forEach(function vyhodnotitOdpovedi(odp, index) {
+    let fracek = document.createElement("div");
+    vysledek.appendChild(fracek);
+    let fakan = document.createElement("h3");
+    fracek.appendChild(fakan);
+    fakan.innerText = odp.text;
+    let decka = document.createElement("p");
+    let indexZvoleneOdpovedi = odp.odpoved;
+    let textZvoleneOdpovedi = odp.odpovedi[indexZvoleneOdpovedi];
+    decka.innerText = "Tvoje odpoved:" + textZvoleneOdpovedi;
+
+    if (odp.odpoved === odp.spravnaOdpoved) {
+      // dobre nooo...
+      x++;
+    } else {
+      // spatne bllll
+    }
+    fakan.appendChild(decka);
+  });
+
+  let nadpis = document.createElement("h2");
+  nadpis.innerHTML =
+    "Správně " +
+    x +
+    " z " +
+    poleVotazek.length +
+    " otázek. Úspěšnost " +
+    Math.round(100 * (x / poleVotazek.length)) +
+    " %";
+  vysledek.appendChild(nadpis);
 }
 
-let indexOtazky=0;
-let poleVotazek = [otazecka1 = {
-    text: 'palmicka vole?',
-    ilustrace: 'obrazky/pivo.jpg',
-    odpovedi: ["odp1", "odp2", "odp3"],
-    spravnaOdpoved : 1
-}, otazecka2 = {
-    text: 'palmicka2 vole?',
-    ilustrace: 'obrazky/pivo.jpg',
-    odpovedi: ["od", "p2", "op3"],
-    spravnaOdpoved : 0
-}, {
-    text: 'palmicka3 vole?',
-    ilustrace: 'obrazky/pivo.jpg',
-    odpovedi: ["od", "op3"],
-    spravnaOdpoved : 0
-}
-]
+let indexOtazky = 0;
+let poleVotazek = [
+  (otazecka1 = {
+    text: "Een kat in de zak kopen (koupit kočku v pytli)",
+    ilustrace: "obrazky/kat.jpg",
+    odpovedi: ["Potmě je každká kočka černá", "Koupit zajíce v pytli", "Brát si někoho jenom pro peníze"],
+    spravnaOdpoved: 1,
+    odpoved: -1,
+  }),
+  (otazecka2 = {
+    text: "Nu breekt mijn klomp! (Teď se mi rozbil dřevák)",
+    ilustrace: "obrazky/klomp.png",
+    odpovedi: ["Už je potřeba jít nakupovat", "Ztratil/a jsem pevnou půdu pod nohama", "Tak to mě překvapuje"],
+    spravnaOdpoved: 2,
+    odpoved: -1,
+  }),
+  {
+    text: "De bloemetjes buiten zetten (Dát kytičky ven)",
+    ilustrace: "obrazky/bloem.png",
+    odpovedi: ["Vyhodit si z kopýtka", "Zbavit se marihuany", "Přijít s křížkem po funuse"],
+    spravnaOdpoved: 0,
+    odpoved: -1,
+  },
+];
