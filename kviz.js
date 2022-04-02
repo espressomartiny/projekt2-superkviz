@@ -1,46 +1,43 @@
-function priNacteni () {
-    let kviz = document.querySelector('.kviz');
+function priNacteni() {
+  let kviz = document.querySelector(".kviz");
 
-    let otazka = document.createElement('div');
-    otazka.setAttribute('id', 'otazka');
-    otazka.innerText = 'Fooooooo';
+  let otazka = document.createElement("div");
+  otazka.setAttribute("id", "otazka");
+  otazka.innerText = "Fooooooo";
 
-    let obsah = document.createElement('div');
-    obsah.classList.add('obsah');
+  let obsah = document.createElement("div");
+  obsah.classList.add("obsah");
 
-    let moznosti = document.createElement('div');
-    moznosti.setAttribute('id', 'moznosti');
+  let moznosti = document.createElement("div");
+  moznosti.setAttribute("id", "moznosti");
 
-    let foto = document.createElement('div');
-    foto.classList.add('foto');
+  let foto = document.createElement("div");
+  foto.classList.add("foto");
 
-    obsah.appendChild(moznosti);
-    obsah.appendChild(foto);
+  obsah.appendChild(foto);
+  obsah.appendChild(moznosti);
+  let obrazek = document.createElement("img");
+  obrazek.setAttribute("id", "obrazek");
+  obrazek.src = "obrazky/pivo.jpg";
 
-    let obrazek = document.createElement('img')
-    obrazek.setAttribute('id', 'obrazek');
-    obrazek.src = 'obrazky/pivo.jpg';
+  let odpovedi = document.createElement("ul");
+  odpovedi.setAttribute("id", "odpovedi");
+  moznosti.appendChild(odpovedi);
 
-    let odpovedi = document.createElement('ul');
-    odpovedi.setAttribute('id', 'odpovedi');
-    moznosti.appendChild(odpovedi);
-
-    let odpoved = document.createElement('li');
-    odpoved.setAttribute('data-odpoved', '0');
-    odpoved.innerText = 'odpoved';
-
-
-    odpovedi.appendChild(odpoved);
-    //<li data-odpoved="0">Jedličku</li>
-
-
+  odpovediNaOtazku.forEach(function necoOdpoved(odp, index)
+  {
+    let odpoved = document.createElement("li");
+    odpoved.setAttribute("data-odpoved", index);
+    odpoved.innerText = odp;
     
+    odpovedi.appendChild(odpoved);
+  });
 
-
-    //kviz.appendChild()
-    kviz.appendChild(otazka);
-    kviz.appendChild(obsah);
-    foto.appendChild(obrazek);
+  kviz.appendChild(otazka);
+  kviz.appendChild(obsah);
+  foto.appendChild(obrazek);
 }
 
-const odpovedi = ['od1', 'od2'];
+
+
+const odpovediNaOtazku = ["od1", "od2", "od3"];
