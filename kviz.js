@@ -69,15 +69,19 @@ function vyhodnot() {
     let decka = document.createElement("p");
     let indexZvoleneOdpovedi = odp.odpoved;
     let textZvoleneOdpovedi = odp.odpovedi[indexZvoleneOdpovedi];
-    decka.innerText = "Tvoje odpoved:" + textZvoleneOdpovedi;
+    decka.innerText = "Tvoje odpoveď byla: " + textZvoleneOdpovedi;
+    fracek.appendChild(decka)
+    let decko = document.createElement("p");
+    fracek.appendChild(decko)
 
     if (odp.odpoved === odp.spravnaOdpoved) {
       // dobre nooo...
       x++;
+      decko.innerText = "A je to tak.";
     } else {
-      // spatne bllll
+      decko.innerText = "Tak to není, správná odpověď je: " + odp.odpovedi[odp.spravnaOdpoved];
     }
-    fakan.appendChild(decka);
+    
   });
 
   let nadpis = document.createElement("h2");
