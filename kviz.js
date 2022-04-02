@@ -1,8 +1,7 @@
 function priNacteni() {
-    vytvorStrukturuOtazky(poleVotazek[0]);
+    indexOtazky = 0;
+    vytvorStrukturuOtazky(poleVotazek[indexOtazky]);
 }
-
-
 
 function vytvorStrukturuOtazky(otazecka) {
   let kviz = document.querySelector(".kviz");
@@ -38,7 +37,12 @@ function vytvorStrukturuOtazky(otazecka) {
     let odpoved = document.createElement("li");
     odpoved.setAttribute("data-odpoved", index);
     odpoved.innerText = odp;
-    odpoved.onclick = function click() { vytvorStrukturuOtazky(poleVotazek[1]) };
+    odpoved.onclick = function click() {
+        if (poleVotazek.length > indexOtazky + 1) {
+        vytvorStrukturuOtazky(poleVotazek[++indexOtazky]);
+    }
+        else vyhodnot() ;
+    };
     
     odpovedi.appendChild(odpoved);
   });
@@ -48,7 +52,20 @@ function vytvorStrukturuOtazky(otazecka) {
   foto.appendChild(obrazek);
 }
 
+function vyhodnot() {
+    let kviz = document.querySelector(".kviz");
+    kviz.innerHTML = '';
+    kviz.style.display = 'none';
+    let vysledek = document.querySelector(".vysledek");
+    vysledek.style.display = 'flex';
 
+    let nadpis = document.createElement("h2");
+    vysledek.appendChild(nadpis);
+    nadpis.innerHTML = "PRDEL";
+
+}
+
+let indexOtazky=0;
 let poleVotazek = [otazecka1 = {
     text: 'palmicka vole?',
     ilustrace: 'obrazky/pivo.jpg',
@@ -58,6 +75,11 @@ let poleVotazek = [otazecka1 = {
     text: 'palmicka2 vole?',
     ilustrace: 'obrazky/pivo.jpg',
     odpovedi: ["od", "p2", "op3"],
+    spravnaOdpoved : 0
+}, {
+    text: 'palmicka3 vole?',
+    ilustrace: 'obrazky/pivo.jpg',
+    odpovedi: ["od", "op3"],
     spravnaOdpoved : 0
 }
 ]
