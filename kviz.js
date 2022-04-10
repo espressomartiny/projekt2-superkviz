@@ -9,6 +9,8 @@ function vytvorStrukturuOtazky(otazecka) {
   //zbavime se deti pokud existujou
   kviz.innerHTML = "";
 
+  let postupKvizem = document.createElement("h2");
+  postupKvizem.innerText = "Otázka " + (indexOtazky + 1) + "/" + poleVotazek.length;
   let otazka = document.createElement("h3");
   otazka.setAttribute("id", "otazka");
   otazka.innerText = otazecka.text;
@@ -46,6 +48,7 @@ function vytvorStrukturuOtazky(otazecka) {
     odpovedi.appendChild(odpoved);
   });
 
+  kviz.appendChild(postupKvizem);
   kviz.appendChild(otazka);
   kviz.appendChild(obsah);
   foto.appendChild(obrazek);

@@ -119,7 +119,8 @@ h2 {
 	display: none; 
 }
 
-.vysledek h2 {
+.vysledek h2, 
+.kviz h2  {
 	margin-top: 0;
 	font-size: 36px;
 	color: var(--cervena);
