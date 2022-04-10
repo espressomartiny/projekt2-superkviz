@@ -62,13 +62,14 @@ function vyhodnot() {
   vysledek.style.display = "block";
 
   let x = 0;
+  let o = 1;
 
   poleVotazek.forEach(function vyhodnotitOdpovedi(odp, index) {
     let vyhodnoceni = document.createElement("div");
     vysledek.appendChild(vyhodnoceni);
     let textOtazky = document.createElement("h3");
     vyhodnoceni.appendChild(textOtazky);
-    textOtazky.innerText = odp.text;
+    textOtazky.innerText = o++ + ") " + odp.text;
     let textOdpovedi = document.createElement("p");
     let indexZvoleneOdpovedi = odp.odpoved;
     let textZvoleneOdpovedi = odp.odpovedi[indexZvoleneOdpovedi];
