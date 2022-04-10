@@ -61,27 +61,26 @@ function vyhodnot() {
   let x = 0;
 
   poleVotazek.forEach(function vyhodnotitOdpovedi(odp, index) {
-    let fracek = document.createElement("div");
-    vysledek.appendChild(fracek);
-    let fakan = document.createElement("h3");
-    fracek.appendChild(fakan);
-    fakan.innerText = odp.text;
-    let decka = document.createElement("p");
+    let vyhodnoceni = document.createElement("div");
+    vysledek.appendChild(vyhodnoceni);
+    let textOtazky = document.createElement("h3");
+    vyhodnoceni.appendChild(textOtazky);
+    textOtazky.innerText = odp.text;
+    let textOdpovedi = document.createElement("p");
     let indexZvoleneOdpovedi = odp.odpoved;
     let textZvoleneOdpovedi = odp.odpovedi[indexZvoleneOdpovedi];
-    decka.innerText = "Tvoje odpoveď byla: " + textZvoleneOdpovedi;
-    fracek.appendChild(decka)
-    let decko = document.createElement("p");
-    fracek.appendChild(decko)
+    textOdpovedi.innerText = "Tvoje odpoveď byla: " + textZvoleneOdpovedi;
+    vyhodnoceni.appendChild(textOdpovedi);
+    let textVyhodnoceni = document.createElement("p");
+    vyhodnoceni.appendChild(textVyhodnoceni);
 
     if (odp.odpoved === odp.spravnaOdpoved) {
-      // dobre nooo...
       x++;
-      decko.innerText = "A je to tak.";
+      textVyhodnoceni.innerText = "A je to tak.";
     } else {
-      decko.innerText = "Tak to není, správná odpověď je: " + odp.odpovedi[odp.spravnaOdpoved];
+      textVyhodnoceni.innerText =
+        "Tak to není, správná odpověď je: " + odp.odpovedi[odp.spravnaOdpoved];
     }
-    
   });
 
   let nadpis = document.createElement("h2");
@@ -101,21 +100,33 @@ let poleVotazek = [
   (otazecka1 = {
     text: "Een kat in de zak kopen (koupit kočku v pytli)",
     ilustrace: "obrazky/kat.jpg",
-    odpovedi: ["Potmě je každká kočka černá", "Koupit zajíce v pytli", "Brát si někoho jenom pro peníze"],
+    odpovedi: [
+      "Potmě je každká kočka černá",
+      "Koupit zajíce v pytli",
+      "Brát si někoho jenom pro peníze",
+    ],
     spravnaOdpoved: 1,
     odpoved: -1,
   }),
   (otazecka2 = {
     text: "Nu breekt mijn klomp! (Teď se mi rozbil dřevák)",
     ilustrace: "obrazky/klomp.png",
-    odpovedi: ["Už je potřeba jít nakupovat", "Ztratil/a jsem pevnou půdu pod nohama", "Tak to mě překvapuje"],
+    odpovedi: [
+      "Už je potřeba jít nakupovat",
+      "Ztratil/a jsem pevnou půdu pod nohama",
+      "Tak to mě překvapuje",
+    ],
     spravnaOdpoved: 2,
     odpoved: -1,
   }),
   {
     text: "De bloemetjes buiten zetten (Dát kytičky ven)",
     ilustrace: "obrazky/bloem.png",
-    odpovedi: ["Vyhodit si z kopýtka", "Zbavit se marihuany", "Přijít s křížkem po funuse"],
+    odpovedi: [
+      "Vyhodit si z kopýtka",
+      "Zbavit se marihuany",
+      "Přijít s křížkem po funuse",
+    ],
     spravnaOdpoved: 0,
     odpoved: -1,
   },
